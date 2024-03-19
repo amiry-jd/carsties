@@ -27,10 +27,10 @@ public class SearchController : ControllerBase
 
         query = searchParams.FilterBy switch
         {
-            "finished" => query.Match(t => t.AuctionEnd < DateTimeOffset.UtcNow),
-            "endingSoon" => query.Match(t => t.AuctionEnd < DateTimeOffset.UtcNow.AddHours(6)
-                && t.AuctionEnd > DateTimeOffset.UtcNow),
-            _ => query.Match(t => t.AuctionEnd > DateTimeOffset.UtcNow)
+            "finished" => query.Match(t => t.AuctionEnd < DateTime.UtcNow),
+            "endingSoon" => query.Match(t => t.AuctionEnd < DateTime.UtcNow.AddHours(6)
+                && t.AuctionEnd > DateTime.UtcNow),
+            _ => query.Match(t => t.AuctionEnd > DateTime.UtcNow)
         };
 
         if (!string.IsNullOrWhiteSpace(searchParams.Seller))

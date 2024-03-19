@@ -26,5 +26,5 @@ public class CreateAuctionDto
     public string ImageUrl { get; set; }
 
     [Required]
-    public DateTimeOffset AuctionEnd { get; set; }
+    public DateTime AuctionEnd { get; set; }
 }
