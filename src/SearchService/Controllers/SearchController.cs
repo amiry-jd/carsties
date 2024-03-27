@@ -20,7 +20,8 @@ public class SearchController : ControllerBase
 
         query = searchParams.OrderBy switch
         {
-            "make" => query.Sort(q => q.Ascending(t => t.Make)),
+            "make" => query.Sort(q => q.Ascending(t => t.Make))
+                .Sort(x => x.Ascending(a => a.Model)),
             "new" => query.Sort(q => q.Descending(t => t.CreatedAt)),
             _ => query.Sort(q => q.Ascending(t => t.AuctionEnd)),
         };

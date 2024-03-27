@@ -5,7 +5,7 @@ import AuctionCard from './AuctionCard';
 import { Auction, PagedResult } from '@/types';
 import AppPagination from '../components/AppPagination';
 import { getData } from '../actions/auctionActions'
-import Filters, { DefaultPageSize } from './Filters';
+import Filters from './Filters';
 import { useParamsStore } from '@/hooks/useParamsStore';
 import { shallow } from 'zustand/shallow';
 import qs from 'query-string';
