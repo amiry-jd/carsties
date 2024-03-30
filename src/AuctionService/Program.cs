@@ -22,10 +22,10 @@ builder.Services.AddMassTransit(x =>
         o.UseBusOutbox();
     });
 
-    // x.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
-    x.AddConsumer<AuctionCreatedFaultConsumer>();
-    x.AddConsumer<AuctionFinishedConsumer>();
-    x.AddConsumer<BidPlacedConsumer>();
+    x.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
+    // x.AddConsumer<AuctionCreatedFaultConsumer>();
+    // x.AddConsumer<AuctionFinishedConsumer>();
+    // x.AddConsumer<BidPlacedConsumer>();
 
     x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
 
@@ -48,6 +48,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters.ValidateAudience = false;
         options.TokenValidationParameters.NameClaimType = "username";
     });
+builder.Services.AddGrpc();
 
 var app = builder.Build();
 
@@ -55,6 +56,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGrpcService<GrpcAuctionService>();
 
 try
 {

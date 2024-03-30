@@ -13,7 +13,7 @@ builder.Services.AddHttpClient<AuctionSvcHttpClient>()
     .AddPolicyHandler(GetPolicy());
 builder.Services.AddMassTransit(x =>
 {
-    //x.AddConsumersFromNamespaceContaining<AuctionCreatedConsumer>();
+    // x.AddConsumersFromNamespaceContaining<AuctionCreatedConsumer>();
     x.AddConsumer<AuctionCreatedConsumer>();
     x.AddConsumer<AuctionUpdatedConsumer>();
     x.AddConsumer<AuctionDeletedConsumer>();
