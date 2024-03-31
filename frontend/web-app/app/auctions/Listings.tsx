@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import AuctionCard from './AuctionCard';
-import { Auction, PagedResult } from '@/types';
 import AppPagination from '../components/AppPagination';
 import { getData } from '../actions/auctionActions'
 import Filters from './Filters';
@@ -14,7 +13,7 @@ import { useAuctionStore } from '@/hooks/useAuctionStore';
 
 export default function Listings() {
 
-    const [loading,setLoading]=useState(true);
+    const [loading, setLoading] = useState(true);
 
     const [params, setParams] = useParamsStore(state => [({
         pageNumber: state.pageNumber,
@@ -43,7 +42,7 @@ export default function Listings() {
             setData(data);
             setLoading(false);
         });
-    }, [url]);
+    }, [url, setData]);
 
     if (loading) return <h3>Loading...</h3>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { numberWithCommas } from "@/lib/numberWithCommas";
+import { numberWithCommas } from "@/app/lib/numberWithCommas";
 import { Auction } from "@/types";
 import { Table } from "flowbite-react";
 
