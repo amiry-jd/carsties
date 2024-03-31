@@ -35,23 +35,28 @@ async function getHeaders() {
     const token = await getTokenWorkaround();
     const headers = { 'Content-Type': 'application/json' } as any;
     if (token) {
-       headers.Authorization = 'Bearer ' + token.access_token;
+        headers.Authorization = 'Bearer ' + token.access_token;
     }
     return headers;
 }
 
 async function handleResponse(response: Response) {
     const text = await response.text();
-    const data = text && JSON.parse(text);
+    let data;
+    try {
+        data = JSON.parse(text);
+    } catch (error) {
+        data = text;
+    }
 
     if (response.ok) {
         return data || response.statusText;
     } else {
         const error = {
             status: response.status,
-            message: response.statusText,
+            message: typeof data === 'string' ? data : response.statusText,
         };
-        return {error};
+        return { error };
     }
 }
 
